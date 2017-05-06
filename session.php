@@ -7,7 +7,7 @@ if (isset($_SESSION["timeout"])) {
 	$sessionTTL = time() - $_SESSION["timeout"];
 	if ($sessionTTL > $inactive) { // if 5 minutes passed with no activity the session will be destroyed and auto logout will ocure
 		session_destroy();
-		header("Location: /index.php");
+		header("Location: /index.html");
 	}
 }
 $_SESSION["timeout"] = time();
@@ -22,3 +22,4 @@ function IsUser() {
 	return true;
 }
 ?>
+

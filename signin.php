@@ -125,10 +125,10 @@ h3 {
        }
        ?>
  
-  <input id="username" class="username" name="username" placeholder=" Username"  type="username" required />
+  <input id="username" class="username" name="username" placeholder=" Username" style="color: #34495E;"  type="username" required />
   <br>
   <br>
-<input class="password" name="password" id="password" placeholder="Password"  type="password" required/>
+<input class="password" name="password" id="password" placeholder="Password" style="color: #34495E;"  type="password" required/>
 <br>
 <br>
 
@@ -148,6 +148,7 @@ h3 {
 </body>
 
 </html>
+
 
 
 

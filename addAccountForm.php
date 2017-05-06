@@ -60,7 +60,7 @@ pic {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MEETING ATTENDANCE MANAGEMENT</title>
+    <title>MEETING ATTENDANCE MANAGEMENT - ADD ACCOUNT -</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -100,7 +100,7 @@ pic {
              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a ><?php echo $_SESSION['username']; ?> </a>
+                        <a href="viewprofile.php"  ><?php echo $_SESSION['username']; ?> </a>
                     </li>
                     <li>
                      <a ><?php echo $_SESSION['usertype']; ?> </a>
@@ -125,7 +125,7 @@ pic {
                 <div class="col-lg-12">
                     <div class="intro-message">
                         <h1>MEETING ATTENDANCE MANAGEMENT</h1>
-                        
+                         <h3>Add Account</h3>
                         <style>
 h3 {
     text-shadow: 20px 20px black;
@@ -143,7 +143,7 @@ h3 {
   <br>
   <input type="text" class="button" name="uName" id="uName" placeholder="Username">
   <br> 
-  <input type="text" class="button" name="pass" id="pass" placeholder="Password">
+  <input type="password" class="button" name="pass" id="pass" placeholder="Password">
   <br>   
   
 			<button class="buttonS" type="submit">Submit</button>
@@ -163,6 +163,9 @@ h3 {
 </body>
 
 </html>
+
+
+
 
 
 

@@ -1,6 +1,10 @@
+<html>
 <?php
+         include("session.php");
 
-header ( "Location:index.html" );
+
+$_SESSION['m_recorded']="yes";
+header ( "Location:adminpage.php" );
 
 $conn = mysqli_connect("id885231_mams", "id885231_root",'swe2017', "mams");
 	// Check connection
@@ -35,3 +39,7 @@ echo "<br>File $fileName uploaded<br>";
 header ( "Location:index.html" );
 } 
 ?>
+
+
+
+

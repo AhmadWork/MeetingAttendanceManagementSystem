@@ -15,7 +15,7 @@ if ($result) {
 	//if(true){
     if (mysqli_num_rows($result) == 1) {
     $user               = mysqli_fetch_assoc($result);
-        $_SESSION['ID']       = $user['id'];
+        $_SESSION['ID']       = $user['emp_id'];
         $_SESSION['username']       = $user['username'];
         $_SESSION['usertype'] = $user['userType'];
         if($_SESSION['usertype']=='admin'){
@@ -34,3 +34,4 @@ if ($result) {
     }
     	
 ?>
+

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-
 include("session.php");
 ?>
 <html lang="en">
@@ -44,7 +43,7 @@ include("session.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MEETING ATTENDANCE MANAGEMENT</title>
+    <title>MEETING ATTENDANCE MANAGEMENT - Create Meeting -</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -78,11 +77,11 @@ include("session.php");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href=index.html>MEETING ATTENDANCE MANAGEMENT</a>
+                <a class="navbar-brand topnav" href=homepage.php>MEETING ATTENDANCE MANAGEMENT</a>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a ><?php echo $_SESSION['username']; ?> </a>
+                        <a href="viewprofile.php" ><?php echo $_SESSION['username']; ?> </a>
                     </li>
                     <li>
                      <a ><?php echo $_SESSION['usertype']; ?> </a>
@@ -107,7 +106,7 @@ include("session.php");
                 <div class="col-lg-12">
                     <div class="intro-message">
                         <h1>MEETING ATTENDANCE MANAGEMENT</h1>
-                        
+                         <h3>Create Meeting</h3>
                         <style>
 h3 {
     text-shadow: 20px 20px black;
@@ -170,19 +169,15 @@ $conn = mysqli_connect("mysql5018.smarterasp.net", "a1943a_mams",'swe434105435',
     if (! $conn)
         die ( "Failed to connect to MySQL: " . mysqli_connect_error () );
 
-
-    $query = "select emp_id, name from emp" ;
-
-$result =  mysqli_query($conn, $query);
-    echo "<html>";
-    echo "<body>";
+    $result = $conn->query("select * from emp");
+    
     echo "<label> Employees selection </label>";
     echo "<div class='mybox'>";
 
     while ($row = $result->fetch_assoc()) {
 
                   //unset($id, $name);
-                  $id = $row['id'];
+                  $id = $row['emp_id'];
                   $name = $row['name']; 
                 echo '<input type="checkbox" align="left" name="employee[]" value="'.$id.'">'.$name.'<br>';
         
@@ -209,6 +204,16 @@ $result =  mysqli_query($conn, $query);
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 

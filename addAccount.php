@@ -1,11 +1,10 @@
 <?php
 include("session.php");
-
-$conn = mysqli_connect("id885231_mams", "id885231_root",'swe2017', "mams");
-	// Check connection
-	if (! $conn)
-		die ( "Failed to connect to MySQL: " . mysqli_connect_error () );
-		
+$conn = mysqli_connect("mysql5018.smarterasp.net", "a1943a_mams",'swe434105435', "db_a1943a_mams");
+    // Check connection
+    if (! $conn)
+        die ( "Failed to connect to MySQL: " . mysqli_connect_error () );
+        
 $name = $_POST['name'];
 $email =  $_POST['email'];
 $role =  $_POST['role'];
@@ -15,7 +14,28 @@ $pass =  $_POST['pass'];
 $query = "INSERT INTO emp VALUES( ' ' ,'$name','$email', '$uName', '$pass','$role')" ;
 
 $result =  mysqli_query($conn, $query);
-	//	header ( "Location:index.html" );
+    //  header ( "Location:index.html" );
+
+
+require_once 'swiftmailer-5.x/lib/swift_required.php';
+
+
+
+$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
+  ->setUsername('meetingattendancesystem@gmail.com')
+  ->setPassword('swe434105435')
+  ;
+// Create the Mailer using your created Transport
+$mailer = Swift_Mailer::newInstance($transport);
+
+// Create a message
+$message = Swift_Message::newInstance('Welcome to The Meeting Attendance System')
+  ->setFrom(array('meetingattendancesystem@gmail.com' => 'MeetingAttendanceSystem'))
+  ->setTo(array($email => 'A name'))
+  ->setBody("Dear ".$name. "\n welcome to the Meeting Attendance System \n your username: ".$uName." \n your password: ".$pass." \n have good meetings :) \n regards \n Meeting Attendance System");
+
+// Send the message
+$result = $mailer->send($message);
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +109,7 @@ pic {
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- WARNING: Respond.js doesnot work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -110,13 +130,13 @@ pic {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="/index.html">MEETING ATTENDANCE MANAGEMENT</a>
+                <a class="navbar-brand topnav" href="/adminpage.php">MEETING ATTENDANCE MANAGEMENT</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a ><?php echo $_SESSION['username']; ?> </a>
+                        <a href="viewprofile.php" ><?php echo $_SESSION['username']; ?> </a>
                     </li>
                     <li>
                      <a ><?php echo $_SESSION['usertype']; ?> </a>
@@ -178,6 +198,19 @@ h3 {
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

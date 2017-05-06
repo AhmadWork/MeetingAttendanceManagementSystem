@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <?php
 
@@ -64,13 +63,13 @@ include("session.php");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="/index.html">MEETING ATTENDANCE MANAGEMENT</a>
+                <a class="navbar-brand topnav" href="homepage.php">MEETING ATTENDANCE MANAGEMENT</a>
             </div>
            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a ><?php echo $_SESSION['username']; ?> </a>
+                        <a href="viewprofile.php" ><?php echo $_SESSION['username']; ?> </a>
                     </li>
                     <li>
                      <a ><?php echo $_SESSION['usertype']; ?> </a>
@@ -109,7 +108,8 @@ h3 {
                             <li>
                                 <form method="POST" >
                                 <a href="CreateM.php" class="button">Create Meeting</span></a>
-                                 <a href="ViewM.php" class="button">view Meetings</span></a>
+                                 <a href="ViewM.php" class="button">View Future Meetings</span></a>
+                                    <a href="myMeeting.php" class="button">My Meetings</span></a>
                                 </form>
                             </li>
                         </ul>
@@ -135,3 +135,8 @@ h3 {
 </body>
 
 </html>
+
+
+
+
+

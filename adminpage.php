@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <?php
 
@@ -23,7 +22,12 @@ include("session.php");
     opacity: 0.9;
 }
 </style>
-
+<?php
+                                    if(isset($_SESSION['m_recorded'])){
+                                        echo "<p style='color:green' >the employee has been added successfully</p>";
+                                        unset($_SESSION['m_recorded']);
+                                    }
+ ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,13 +68,13 @@ include("session.php");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="/index.html">MEETING ATTENDANCE MANAGEMENT</a>
+                <a class="navbar-brand topnav" href="/adminpage.php">MEETING ATTENDANCE MANAGEMENT</a>
             </div>
            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a ><?php echo $_SESSION['username']; ?> </a>
+                        <a href="viewprofile.php"  ><?php echo $_SESSION['username']; ?> </a>
                     </li>
                     <li>
                   
@@ -108,7 +112,8 @@ h3 {
                         <ul class="list-inline intro-social-buttons">
                             <li>
                                 <form method="POST" >
-                                <a href="addAccountForm.php" class="button">Add account</span></a>
+                                <a href="addAccountForm.php" class="button">Add Account</span></a>
+                                    <a href="viewEmp.php" class="button">View Employees</span></a>
                                 </form>
                             </li>
                         </ul>
@@ -134,3 +139,8 @@ h3 {
 </body>
 
 </html>
+
+
+
+
+

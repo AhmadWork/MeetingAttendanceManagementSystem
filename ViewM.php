@@ -82,7 +82,7 @@ include("session.php");
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a ><?php echo $_SESSION['username']; ?> </a>
+                        <a href="viewprofile.php" ><?php echo $_SESSION['username']; ?> </a>
                     </li>
                     <li>
                      <a ><?php echo $_SESSION['usertype']; ?> </a>
@@ -107,7 +107,7 @@ include("session.php");
                 <div class="col-lg-12">
                     <div class="intro-message">
                         <h1>MEETING ATTENDANCE MANAGEMENT</h1>
-                        
+                           <h3>Future Meetings</h3>
                         <style>
 h3 {
     text-shadow: 20px 20px black;
@@ -136,54 +136,71 @@ color:red;
 }
 </style>
                        
-  <?php
+<?php
 $con = mysqli_connect("mysql5018.smarterasp.net", "a1943a_mams",'swe434105435', "db_a1943a_mams");
 // Check connection
 if (mysqli_connect_errno())
 {
 echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
+
 $name=$_SESSION['username'];
-$id = mysqli_query($con,"SELECT id FROM emp WHERE username ='$name' ");
+$id = mysqli_query($con,"SELECT emp_id FROM emp WHERE username ='$name' ");
 
 $i=mysqli_fetch_assoc($id);
-$result= mysqli_query($con,"SELECT meetingid FROM attandee WHERE email='$i[id]'" );
+$result= mysqli_query($con,"SELECT DISTINCT meetingid FROM attandee WHERE email='$i[id]'" );
+
 
 echo "<table border='1' style='margin:auto; width: 80%;    
     background-color: #f1f1c1; color:black;'>
 
 <tr>
-<th style='align:center; background-color: black;
+<th style='align:center; background-color: black; text-align: center;
+    color: white;'>Meeting ID</th>
+<th style='align:center; background-color: black; text-align: center;
     color: white;'>Meeting Date</th>
-<th   style=' background-color: black;
+<th   style=' background-color: black;  text-align: center;
     color: white;'>Time</th>
-<th  style=' background-color: black;
+<th  style=' background-color: black;  text-align: center;
     color: white;'>Duration</th>
-<th style='background-color: black;
+<th style='background-color: black;  text-align: center;
     color: white; align:center;'>Location</th>
+    
 </tr>";
 
+  //$row = mysqli_fetch_array($result);
 while($row = mysqli_fetch_array($result))
 {
-$myid=$row['meetingid'];
-$meeting=mysqli_query($con,"SELECT * FROM meetings WHERE id ='$myid' ");
+$myid =$row['meetingid'];
+$meeting=mysqli_query($con,"SELECT * FROM meetings WHERE meeting_id ='$myid' ");
 $readrow=mysqli_fetch_array($meeting);
 echo "<tr>";
-echo "<td>"; echo $readrow['mdate']; echo "</td>";
+echo "<td>". $readrow['meeting_id']."</td>";
+echo "<td>". $readrow['mdate']."</td>";
 echo "<td>" . $readrow['time'] . "</td>";
 echo "<td>" . $readrow['duration'] . "</td>";
 echo "<td>" . $readrow['location'] . "</td>";
-echo "</tr>";
+    echo "</tr>";
+
 }
 echo "</table>";
 
 mysqli_close($con);
 ?>
-    <!-- /.intro-header -->
+</div>
+</div>
 
-    <!-- Page Content -->
+                     <div>
+                     <div class="col-md-12">          
+       <form id="deleted" action="apologize.php" method="post" enctype="multipart/form-data"  onsubmit="return confirm('Do you really want to aplogize?')">
+  <input type="number" class="button" name="id" id="id" placeholder="meeting id">
+  <br>
 
+      <button class="buttonS" type="submit">apology</button>
+</form> 
 
+        </div>
+            </div>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -193,4 +210,13 @@ mysqli_close($con);
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
 
